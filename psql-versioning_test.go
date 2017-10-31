@@ -12,7 +12,7 @@ const queryDb = "SELECT current_database()"
 const queryVersion = "SELECT description FROM pg_shdescription JOIN pg_database ON objoid = pg_database.oid WHERE datname = current_database()"
 const dbName = "mock_db"
 
-var driver = new(versioningDriver)
+var driver = new(strategy)
 
 func TestDBVersionWithoutVersion(t *testing.T) {
 	var (

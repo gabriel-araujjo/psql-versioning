@@ -8,9 +8,9 @@ import (
 
 type DB = sql.DB
 
-type versioningDriver struct {}
+type strategy struct {}
 
-func (v *versioningDriver) Version(db *DB) (int, error) {
+func (v *strategy) Version(db *DB) (int, error) {
 
 	var version int
 
@@ -33,7 +33,7 @@ func (v *versioningDriver) Version(db *DB) (int, error) {
 	}
 }
 
-func (v *versioningDriver) SetVersion(db *DB, version int) error {
+func (v *strategy) SetVersion(db *DB, version int) error {
 
 	var (
 		databaseName string
@@ -54,5 +54,5 @@ func (v *versioningDriver) SetVersion(db *DB, version int) error {
 }
 
 func init() {
-	versioned_database.Register("psql-versioning", new(versioningDriver))
+	version.Register("psql-versioning", new(strategy))
 }
